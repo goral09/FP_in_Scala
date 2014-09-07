@@ -64,6 +64,4 @@ object List {
 
   def sum2(l: List[Int]) = foldRight(0)(l)(_+_)
   def product2(l: List[Dobule]) = foldRight(1.0)(l)(_*_)
-
-  
 }
