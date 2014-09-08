@@ -103,10 +103,64 @@ class ListSpec extends Specification {
       "without using fold" in {
         val l = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
 
-        pending 
-
         List.reverse(l) === Cons(4, Cons(3, Cons(2, Cons(1, Nil))))
       }
+    }
+
+    "foldLeft implemented using foldRight" in {
+      val l = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
+
+      pending
+      
+      List.foldLeftViaFoldRight(List.apply[Int]())(l)((acc, curr) => Cons(curr,acc)) === List.reverse(l)
+    }
+
+    "foldRight implemented using foldLeft" in {
+      val l = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
+
+      List.foldRightViaFoldLeft(1.0)(l)(_ * _) === 24
+    }
+
+    "append using foldRight" in {
+      val l = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
+
+      val el = Cons(5, Nil)
+
+      List.appendViaFoldRight(l,el) === Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Nil)))))
+    }
+
+    "concat using foldRight" in {
+      val l = Cons(Cons(11, Cons(12, Cons(13, Nil))), Nil)
+
+      List.concat(l) === Cons(11, Cons(12, Cons(13, Nil)))
+    }
+
+    "map using foldRight" in {
+      val l = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
+
+      val f: Int => Int = _ + 10
+
+      List.map(l)(f) === Cons(11, Cons(12, Cons(13, Cons(14, Nil))))
+    }
+
+    "filter using foldRight" in {
+      val l = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
+
+      val f: Int => Boolean = _ < 3
+
+      List.filter(l)(f) === Cons(1, Cons(2, Nil))
+    }
+
+    "flatMap using foldRight" in {
+      pending
+    }
+
+    "flatMap without foldRight" in {
+      pending
+    }
+
+    "filter via flatMap" in {
+      pending
     }
   }
 }
