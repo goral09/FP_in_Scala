@@ -1,4 +1,4 @@
-package com.goral09.fp_in_scala.chapter3
+package com.goral09.fp_in_scala.chapter3.Lists
 package com.goral09.fp_in_scala.test
 
 import org.specs2.mutable._
