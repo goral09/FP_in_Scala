@@ -61,7 +61,7 @@ object RNG {
 
   def positiveMax(n: Int): Rand[Int] = map(positiveInt)(_ % n)
 
-  def double: Rand[Double] = map(positiveInt)(_ /(Int.MaxValue.toDouble + 1))
+  def double_2: Rand[Double] = map(positiveInt)(_ /(Int.MaxValue.toDouble + 1))
 
   def map2[A,B,C](ra: Rand[A], rb: Rand[B])(f: (A,B) => C): Rand[C] = rnd => {
     val (i1, r1) = ra(rnd)
@@ -69,6 +69,6 @@ object RNG {
     (f(i1,i2), r2)
   }
 
-  def intDouble_1: Rand[(Int, Double)] = map2(int, double)((_,_))
-  def doubleInt_1: Rand[(Double, Int)] = map2(double, int)((_,_))
+  def intDouble_1: Rand[(Int, Double)] = map2(positiveInt, double_2)((_,_))
+  def doubleInt_1: Rand[(Double, Int)] = map2(double_2, positiveInt)((_,_))
 }
